@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Nysse — Growth & Revenue Marketing Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --surface: #121B2E;
+    --surface-2: #182338;
+    --line: #253253;
+    --text: #E7ECF5;
+    --text-dim: #93A0BD;
+    --accent: #F2A340;
+    --accent-dim: #7A5B2C;
+    --good: #4ADE80;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,18,32,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .nav-name{font-family:var(--display); font-weight:600; font-size:16px; letter-spacing:0.02em;}
+  .nav-links{display:flex; gap:28px; font-size:14px; color:var(--text-dim);}
+  .nav-links a{text-decoration:none; transition:color .2s;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-links a:focus-visible, a:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .nav-cta{
+    font-size:13px; font-family:var(--mono); color:var(--bg); background:var(--accent);
+    padding:8px 14px; border-radius:4px; text-decoration:none; font-weight:500;
+  }
+  @media (max-width: 640px){ .nav-links{display:none;} }
+
+  /* HERO */
+  header.hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:20px; height:1px; background:var(--accent);}
+  h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(36px, 6vw, 64px); line-height:1.04; letter-spacing:-0.01em;
+    max-width:820px;
+  }
+  h1 .accent{color:var(--accent);}
+  .hero-sub{
+    margin-top:22px; font-size:18px; color:var(--text-dim); max-width:600px; line-height:1.65;
+  }
+  .hero-meta{
+    margin-top:28px; display:flex; flex-wrap:wrap; gap:20px; font-family:var(--mono); font-size:13px; color:var(--text-dim);
+  }
+  .hero-meta span{display:flex; align-items:center; gap:7px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--good);}
+
+  /* PIPELINE CHART - signature element */
+  .chart-block{
+    margin-top:56px; background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:28px 28px 20px;
+  }
+  .chart-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+  .chart-title{font-family:var(--mono); font-size:12px; color:var(--text-dim); letter-spacing:0.05em; text-transform:uppercase;}
+  .chart-figure{font-family:var(--display); font-size:15px; color:var(--good); font-weight:600;}
+  svg#pipeline{width:100%; height:auto; display:block; overflow:visible;}
+  .pipe-line{
+    fill:none; stroke:var(--accent); stroke-width:2.5;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 1.8s cubic-bezier(.4,0,.2,1) .3s forwards;
+  }
+  .pipe-area{opacity:0; animation:fadein 1.2s ease 1.6s forwards;}
+  @keyframes draw{ to{stroke-dashoffset:0;} }
+  @keyframes fadein{ to{opacity:1;} }
+  .pipe-point{opacity:0; animation:fadein .5s ease forwards;}
+  .pipe-label{font-family:var(--mono); font-size:11px; fill:var(--text-dim);}
+  .pipe-value{font-family:var(--mono); font-size:13px; fill:var(--text); font-weight:500;}
+
+  section{padding:64px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-num{font-family:var(--mono); font-size:12px; color:var(--accent);}
+  h2{font-family:var(--display); font-size:clamp(24px,3vw,32px); font-weight:600; letter-spacing:-0.01em;}
+
+  /* SUMMARY */
+  .summary-text{font-size:17px; color:var(--text-dim); max-width:760px; line-height:1.75;}
+  .summary-text strong{color:var(--text); font-weight:600;}
+
+  /* RESULTS GRID */
+  .results-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .result-card{background:var(--surface); padding:26px 22px;}
+  .result-num{font-family:var(--display); font-size:30px; font-weight:700; color:var(--accent); line-height:1;}
+  .result-label{margin-top:10px; font-size:13.5px; color:var(--text-dim); line-height:1.5;}
+  .result-co{margin-top:12px; font-family:var(--mono); font-size:11.5px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* EXPERIENCE */
+  .job{
+    padding:28px 0; border-bottom:1px solid var(--line); display:grid; grid-template-columns:200px 1fr; gap:24px;
+  }
+  .job:last-child{border-bottom:none;}
+  .job-meta{font-family:var(--mono); font-size:12.5px; color:var(--text-dim); padding-top:3px;}
+  .job-meta .dates{display:block; margin-top:6px;}
+  .job-title{font-family:var(--display); font-size:19px; font-weight:600;}
+  .job-title .co{color:var(--accent);}
+  .job ul{margin-top:14px; padding-left:18px; color:var(--text-dim); font-size:15px;}
+  .job li{margin-bottom:9px; line-height:1.6;}
+  .job li::marker{color:var(--accent);}
+  @media (max-width:640px){ .job{grid-template-columns:1fr; gap:8px;} }
+
+  /* SKILLS */
+  .skills-wrap{display:flex; flex-wrap:wrap; gap:10px;}
+  .skill-pill{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    border:1px solid var(--line); padding:8px 14px; border-radius:20px;
+    transition:border-color .2s, color .2s;
+  }
+  .skill-pill:hover{border-color:var(--accent); color:var(--text);}
+
+  /* CONTACT */
+  footer{padding:70px 0 60px; border-top:1px solid var(--line);}
+  .contact-head{font-family:var(--display); font-size:clamp(26px,4vw,38px); font-weight:600; max-width:560px; line-height:1.15;}
+  .contact-links{margin-top:30px; display:flex; flex-wrap:wrap; gap:16px;}
+  .contact-link{
+    display:flex; align-items:center; gap:8px; font-family:var(--mono); font-size:14px;
+    padding:12px 18px; border:1px solid var(--line); border-radius:6px; text-decoration:none; color:var(--text);
+    transition:border-color .2s, background .2s;
+  }
+  .contact-link:hover{border-color:var(--accent); background:var(--surface);}
+  .contact-link:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .foot-note{margin-top:46px; font-size:12.5px; color:var(--text-dim); font-family:var(--mono);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Paul Nysse</div>
+    <div class="nav-links">
+      <a href="#results">Results</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+    </div>
+    <a class="nav-cta" href="mailto:pnysse1221@gmail.com">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Growth &amp; Revenue Marketing Leader</div>
+    <h1>Building demand&nbsp;engines that turn <span class="accent">pipeline into revenue.</span></h1>
+    <p class="hero-sub">15+ years scaling demand generation, GTM, and revenue marketing functions for B2B SaaS companies — most recently growing new business pipeline from $6.3M to $30.5M at AutoScheduler.ai.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span>Grand Rapids, MI</span>
+      <span>(616) 446-1212</span>
+      <span>pnysse1221@gmail.com</span>
+      <span><a href="https://linkedin.com/in/paulnysse" target="_blank" rel="noopener">linkedin.com/in/paulnysse</a></span>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-head">
+        <div class="chart-title">New business pipeline — AutoScheduler.ai</div>
+        <div class="chart-figure">+384% growth</div>
+      </div>
+      <svg id="pipeline" viewBox="0 0 900 220" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F2A340" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#F2A340" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="0" y1="170" x2="900" y2="170" stroke="#253253" stroke-width="1"/>
+        <path class="pipe-area" d="M40,150 C 220,145 360,120 500,95 C 640,70 760,45 860,32 L860,170 L40,170 Z" fill="url(#areaFill)"/>
+        <path class="pipe-line" d="M40,150 C 220,145 360,120 500,95 C 640,70 760,45 860,32" />
+        <circle class="pipe-point" cx="40" cy="150" r="4.5" fill="#F2A340" style="animation-delay:1.7s"/>
+        <text class="pipe-value" x="40" y="132">$6.3M</text>
+        <text class="pipe-label" x="40" y="192">Apr 2025</text>
+        <circle class="pipe-point" cx="860" cy="32" r="4.5" fill="#4ADE80" style="animation-delay:2.1s"/>
+        <text class="pipe-value" x="792" y="20">$30.5M</text>
+        <text class="pipe-label" x="812" y="192">Peak</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="summary">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>Summary</h2></div>
+    <p class="summary-text">
+      Growth &amp; Revenue Marketing Leader with <strong>15+ years</strong> of experience building and scaling demand generation, go-to-market, and revenue marketing functions for B2B SaaS and technology companies. Proven track record building teams and growth engines that generate pipeline, accelerate customer acquisition, and align Marketing and Sales around measurable revenue outcomes. Experienced across demand generation, marketing operations, ABM, marketing automation, paid media, inbound and outbound programs, and GTM strategy. Most recently grew new business pipeline from <strong>$6.3M to $30.5M</strong> at AutoScheduler.ai, following a track record of high-growth performance at Ludus, including <strong>945% three-year revenue growth</strong> and three consecutive Inc. 5000 rankings.
+    </p>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Selected career results</h2></div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-num">$6.3M → $30.5M</div>
+        <div class="result-label">New business pipeline built through an integrated demand gen engine spanning inbound, outbound, paid media, SEO, and events</div>
+        <div class="result-co">AutoScheduler.ai</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">945%</div>
+        <div class="result-label">Three-year revenue growth, supporting three consecutive Inc. 5000 rankings including #431 overall</div>
+        <div class="result-co">Ludus</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">+60%</div>
+        <div class="result-label">Increase in new account creation through targeted acquisition strategy and funnel optimization</div>
+        <div class="result-co">Ludus</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">+40%</div>
+        <div class="result-label">Increase in qualified leads and pipeline through B2B demand generation initiatives</div>
+        <div class="result-co">Flash</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">+300%</div>
+        <div class="result-label">Lead generation increase after building the company's first scalable demand gen function</div>
+        <div class="result-co">Dominion Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2>Experience</h2></div>
+
+    <div class="job">
+      <div class="job-meta">AutoScheduler.ai<span class="dates">Apr 2025 — Present</span></div>
+      <div>
+        <div class="job-title">Growth &amp; Demand Generation Manager <span class="co">· AutoScheduler.ai</span></div>
+        <ul>
+          <li>Grew new business pipeline from $6.3M to a peak of $30.5M by building an integrated demand generation engine spanning inbound, outbound, paid media, SEO, content, and industry events, with the majority of pipeline growth marketing-sourced</li>
+          <li>Led the BDR function in partnership with Sales, establishing lead qualification, handoff, and pipeline-generation processes that produced roughly 60 sales meetings and 40 qualified SQLs</li>
+          <li>Built and managed the marketing operations infrastructure in HubSpot — lead scoring, segmentation, workflows, campaign attribution, and executive reporting across MQLs, SQLs, pipeline contribution, and campaign ROI</li>
+          <li>Developed the company's conference and event demand strategy across Gartner, Manifest, MODEX, and other industry events</li>
+          <li>Led digital acquisition and search optimization initiatives, improving SEO across 140+ pages and implementing GEO/AEO strategies to improve visibility in AI-driven search</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">Ludus<span class="dates">Feb 2024 — Mar 2025</span></div>
+      <div>
+        <div class="job-title">Head of Growth <span class="co">· Ludus</span></div>
+        <ul>
+          <li>Built and led a cross-functional growth organization spanning Marketing, Business Development, and Sales, aligning acquisition, pipeline generation, customer growth, and revenue strategy across the full funnel</li>
+          <li>Contributed to 945% three-year revenue growth and three consecutive Inc. 5000 rankings, including #431 overall and #1 software company in Michigan in 2025</li>
+          <li>Drove a 60% increase in new account creation through targeted acquisition strategies and funnel optimization</li>
+          <li>Developed and executed a multi-channel GTM strategy across conferences, referrals, paid social, Google Ads, outbound, and PLG initiatives, doubling lead volume</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">Flash<span class="dates">Dec 2020 — Feb 2024</span></div>
+      <div>
+        <div class="job-title">Senior Growth Marketer <span class="co">· Flash</span></div>
+        <ul>
+          <li>Led B2B demand generation initiatives that increased qualified leads and pipeline by 40%, partnering across Marketing and Sales</li>
+          <li>Led marketing integration across 13+ acquired entities during a period of rapid company growth, standardizing marketing processes while supporting a 2x increase in company revenue</li>
+          <li>Built and optimized lifecycle email nurture programs averaging 25%+ open rates and 5%+ click-through rates</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-meta">Dominion Systems<span class="dates">Apr 2011 — Nov 2020</span></div>
+      <div>
+        <div class="job-title">Marketing Team Lead → Sales &amp; Marketing Manager <span class="co">· Dominion Systems</span></div>
+        <ul>
+          <li>Promoted into Sales &amp; Marketing leadership, ultimately overseeing a 25-person cross-functional organization spanning Marketing, Sales, Business Development, and Operations</li>
+          <li>Built the company's first scalable demand generation function, increasing lead generation by more than 300%</li>
+          <li>Built and implemented an inbound GTM strategy that shifted the lead mix from 100% outbound to a 60/40 inbound-outbound model</li>
+          <li>Doubled net new sales over three years while reducing customer churn to the lowest level in company history</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2>Skills</h2></div>
+    <div class="skills-wrap">
+      <span class="skill-pill">Growth Marketing</span>
+      <span class="skill-pill">Demand Generation</span>
+      <span class="skill-pill">Revenue Marketing</span>
+      <span class="skill-pill">Pipeline Generation</span>
+      <span class="skill-pill">Go-to-Market Strategy</span>
+      <span class="skill-pill">Marketing Automation</span>
+      <span class="skill-pill">HubSpot</span>
+      <span class="skill-pill">Account-Based Marketing</span>
+      <span class="skill-pill">Marketing Operations</span>
+      <span class="skill-pill">Inbound Marketing</span>
+      <span class="skill-pill">Paid Media</span>
+      <span class="skill-pill">LinkedIn Ads</span>
+      <span class="skill-pill">Salesforce</span>
+      <span class="skill-pill">Pardot</span>
+      <span class="skill-pill">Google Analytics / GA4</span>
+      <span class="skill-pill">Zoominfo</span>
+      <span class="skill-pill">A/B Testing</span>
+      <span class="skill-pill">Conversion Optimization</span>
+      <span class="skill-pill">SEO/SEM</span>
+      <span class="skill-pill">Claude · ChatGPT · Gemini</span>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">05</span><h2>Education</h2></div>
+    <p class="summary-text"><strong>Grand Valley State University</strong> — Bachelor of Business Administration, Marketing &amp; Management</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="contact-head">Looking for a growth leader who's built pipeline from the ground up? Let's talk.</div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:pnysse1221@gmail.com">✉ pnysse1221@gmail.com</a>
+      <a class="contact-link" href="tel:+16164461212">☎ (616) 446-1212</a>
+      <a class="contact-link" href="https://linkedin.com/in/paulnysse" target="_blank" rel="noopener">in linkedin.com/in/paulnysse</a>
+    </div>
+    <div class="foot-note">Grand Rapids, MI · Paul Nysse © 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
